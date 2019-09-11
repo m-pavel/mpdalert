@@ -24,9 +24,17 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	err = cli.PlaylistSave("current")
 	if err != nil {
-		panic(err)
+		err = cli.PlaylistRemove("current")
+		if err != nil {
+			panic(err)
+		}
+		err = cli.PlaylistSave("current")
+		if err != nil {
+			panic(err)
+		}
 	}
 	err = cli.Clear()
 	if err != nil {
